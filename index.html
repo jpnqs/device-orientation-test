@@ -5,6 +5,11 @@
   </head>
   <body>
     <script>
+          if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+
       document.body.style.fontFamily = 'Arial';
       document.body.style.fontSize = "20rem";
       document.body.style.color = 'black';
@@ -30,6 +35,12 @@
 
 
       }, true);
+                    })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
+
     </script>
   </body>
 </html>
